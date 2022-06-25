@@ -22,9 +22,8 @@ title: Hi, and welcome
 email: me@rishibhatio.io
 description: >- # this means to ignore newlines until "baseurl:"
   Ok so here's my website. Now what do I do?
-domain: rishibhatia.github.io
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://rishhbhatia.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+domain: rishibhatia.io
+url: "https://rishibhatia.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  rishhbhatia
 linkedin_username: rishhbhatia
