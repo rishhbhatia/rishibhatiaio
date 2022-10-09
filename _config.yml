@@ -21,7 +21,7 @@
 title: Hi, and welcome
 email: me@rishibhatio.io
 description: >- # this means to ignore newlines until "baseurl:"
-  Ok so here's my website. Now what do I do?
+Writings and ideas on data + product
 domain: rishibhatia.io
 url: "https://rishibhatia.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
