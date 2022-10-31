@@ -1,8 +1,8 @@
 ---
-layout: post
+layout: category-post
 title:  "Why am I starting my website"
 date:   2022-08-23 15:31:06 -0700
-categories: 
+categories: writing
 ---
 ### Let's get started
 \

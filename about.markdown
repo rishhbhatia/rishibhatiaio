@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Know me
+title: About
 permalink: /about/
 ---
 
@@ -10,4 +10,4 @@ Prior backround in tech consulting, quant research, and marketing analytics.
 
 When my laptop is closed, I'm out strength training, swimming, snowboarding and my favorite - having 1:1 conversations with people I find extremely fascinating in cafes all over SF.
 
-Write to me at me@rishibhatia.io
+I can be reached at rishi@rishibhatia.io
