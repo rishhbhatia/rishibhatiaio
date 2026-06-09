@@ -26,23 +26,9 @@
   }
 }
 
-.section--alt {
-  background: $color-bg-alt;
-}
-
-.section--dark {
-  background: $color-ink;
-  border-top: 4px solid $color-accent;
-  color: $color-on-dark-muted;
-
-  h2,
-  h3 {
-    color: #fff;
-  }
-}
-
-.section--accent {
-  background: $color-accent;
+// hairline divider between stacked white sections (editorial rhythm)
+.section--line {
+  border-top: 1px solid $color-border-strong;
 }
 
 .eyebrow {
@@ -53,10 +39,6 @@
   text-transform: uppercase;
   color: $color-muted;
   margin-bottom: $space-4;
-
-  .section--dark & {
-    color: $color-on-dark-muted;
-  }
 }
 
 // ------------------------------------------------------------- header
@@ -107,15 +89,6 @@
   &:hover,
   &[aria-current="page"] {
     color: $color-ink;
-  }
-}
-
-// extra specificity: .btn would otherwise win the cascade and force inline-block
-.site-header__inner .site-header__cta {
-  display: none;
-
-  @media (min-width: $bp-md) {
-    display: inline-block;
   }
 }
 

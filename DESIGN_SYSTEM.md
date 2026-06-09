@@ -1,26 +1,29 @@
 # Design system — rishibhatia.io
 
-Extracted from the live ceroh.ai site (computed styles + stylesheet, 2026-06-09) and
-reproduced in Jekyll/SCSS. Source of truth for values: `_sass/_tokens.scss`.
+Originally extracted from the live ceroh.ai site (computed styles, 2026-06-09), then
+deliberately diverged (same day, on request) into a quieter, editorial personal-site
+look. Kept from ceroh: the type pairing, spacing rhythm, containers, fixed blurred
+header, and reveal motion. Dropped: the yellow accent, pill buttons, alternating
+grey/dark marketing sections, and boxed cards. Source of truth: `_sass/_tokens.scss`.
 
 ## Color
 
 | Token | Value | Use |
 |---|---|---|
-| ink | `#1a1a1a` | Headings, body text, dark sections, dark buttons |
+| ink | `#1a1a1a` | Headings, body text, button hover fill |
 | muted | `#666666` | Secondary text, nav links, captions |
-| bg | `#ffffff` | Page background |
-| bg-alt | `#f5f5f5` | Alternating section background |
-| accent | `#f5d04e` | Yellow accent: buttons, step circles, link underlines, dark-section stat numbers |
-| accent-hover | `#eec33a` | Button hover (ceroh's `accent-hover`; exact value not exposed, chosen one step deeper) |
+| bg | `#ffffff` | Page background (the whole site is white) |
+| bg-alt | `#f5f5f5` | Code blocks only |
+| accent | `#b85c38` | Terracotta: link underlines, step numerals, selection, blockquote rule, OG bar, favicon |
+| accent-hover | `#9e4a2b` | Accent hover |
 | border | `rgba(0,0,0,0.05)` | Header hairline |
-| border-strong | `rgba(0,0,0,0.1)` | Card borders, dividers |
-| on-dark-muted | `rgba(255,255,255,0.75)` | Body text on dark sections |
+| border-strong | `rgba(0,0,0,0.1)` | Section/row dividers, glance table rules |
 
 ## Typography
 
 - **Display:** DM Serif Display 400, letter-spacing −0.025em, line-height 1.1.
-  Used for h1/hero (42→64px via clamp), page titles, stat numbers, the wordmark.
+  Used for h1/hero (42→64px clamp), page titles, work-entry titles (26→34px clamp),
+  stat numbers, step numerals, the wordmark.
 - **Sans:** Inter (variable, self-hosted woff2), system fallback.
   h2 32px/700 · h3 20px/700 · body 17px/1.65 · lead 20px muted · labels 13–14px.
 - Eyebrow labels: 13px, 600, uppercase, 0.12em tracking, muted.
@@ -28,31 +31,37 @@ reproduced in Jekyll/SCSS. Source of truth for values: `_sass/_tokens.scss`.
 ## Layout & spacing
 
 - Containers: 1000px outer · 780px mid · 680px prose. Gutter 24px.
-- Section rhythm: 96px top/bottom on desktop (ceroh `py-24`), 64px mobile.
-- Section variants: white → `#f5f5f5` → dark (`#1a1a1a` + 4px accent top border) → full accent CTA.
+- Section rhythm: 96px top/bottom desktop, 64px mobile.
+- Sections are all white, separated by full-width 1px `rgba(0,0,0,0.1)` hairlines
+  (`.section--line`) — editorial page, not marketing bands.
 
 ## Components
 
-- **Buttons:** pill radius; accent bg + ink text, 600 weight; sm `12px 24px / 14px`,
-  lg `16px 40px / 16px`; dark variant ink bg + white text.
-- **Header:** fixed, `rgba(255,255,255,0.9)` + backdrop blur, 1px `rgba(0,0,0,0.05)` bottom border;
-  wordmark in DM Serif; 14px muted links → ink on hover; pill CTA; hamburger under 768px.
-- **Numbered steps:** 40px accent circles ("01" 14px/700) + title, kicker, muted body.
-- **Cards:** 1px `rgba(0,0,0,0.1)` border, 12px radius, 32px padding, border darkens on hover.
-- **Stats:** 3-up grid, DM Serif 48px numbers, 14px muted labels; accent numbers on dark.
+- **Links:** `.text-link` — 600 weight ink with 2px terracotta underline, ink on hover.
+  Primary actions are arrow text-links, not buttons.
+- **Button** (`.btn`, used sparingly — 404): 1px ink border, 8px radius, transparent;
+  inverts to ink/white on hover.
+- **Header:** fixed, `rgba(255,255,255,0.9)` + backdrop blur, hairline bottom border;
+  DM Serif wordmark; 14px muted links (Work / Writing / About / Contact) → ink on
+  hover; hamburger under 768px. No CTA button.
+- **Work entries:** borderless editorial rows in `.work-list` (hairline between rows):
+  uppercase tag, DM Serif title (accent underline on hover), muted outcome, arrow.
+- **Numbered steps:** typographic DM Serif numerals ("01") in terracotta + title and
+  muted body. No badges or circles.
+- **Stats:** 3-up grid, DM Serif 48px ink numbers, 14px muted labels.
 - **Bio block:** round 160px photo, name, "Previously: …" line, muted body.
-- **Footer:** 1px top border, wordmark + tagline left, muted links right.
+- **Footer:** hairline top border, wordmark + tagline left, muted links right.
 
 ## Motion
 
 - `.reveal` on scroll: opacity 0 + translateY(28px) → none, 0.65s `cubic-bezier(0.16,1,0.3,1)`,
-  triggered by IntersectionObserver. Fully disabled under `prefers-reduced-motion` and without JS.
+  IntersectionObserver. Fully disabled under `prefers-reduced-motion` and without JS.
 - Hovers: 0.2s color/border transitions. Nothing bouncy.
 
-## Decisions / deviations from ceroh.ai
+## Decisions
 
-- Body text is ink `#1a1a1a` at 17px (ceroh's 20px muted body suits a sales page; long-form
-  reading here wants higher contrast and a tighter measure).
+- Terracotta `#b85c38` replaced ceroh's yellow `#f5d04e` as the single accent —
+  warmer and personal, and the strongest visual separator from ceroh.ai.
+- Body text is ink at 17px (long-form reading wants contrast and a tight measure).
 - No dark mode: doubles the QA surface for a site this small; the brand is light.
-- `accent-hover` value approximated (not exposed in ceroh's compiled CSS).
-- Fonts self-hosted (66KB woff2 total) instead of next/font — faster, no third-party request.
+- Fonts self-hosted (66KB woff2 total) — faster, no third-party request.

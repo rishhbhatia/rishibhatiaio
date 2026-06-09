@@ -17,23 +17,25 @@ image: /assets/og/work.png
     </p>
   </header>
 
-  <div style="padding-bottom: 6rem;">
+  <ul class="work-list" style="padding-bottom: 6rem;">
     {% assign work = site.work | sort: "order" %}
     {% for item in work %}
-    <a class="card reveal" href="{{ item.url }}" {% unless forloop.first %}style="margin-top: 1.5rem;"{% endunless %}>
-      <span class="card__tag">{{ item.tag }}</span>
-      <h2 class="card__title">{{ item.title }}</h2>
-      <p class="card__outcome">{{ item.outcome }}</p>
-      <div class="stats" style="margin-top: 1.5rem;">
-        {% for stat in item.stats %}
-        <div class="stat">
-          <div class="stat__number" style="font-size: 2rem;">{{ stat.number }}</div>
-          <div class="stat__label">{{ stat.label }}</div>
+    <li>
+      <a class="card reveal" href="{{ item.url }}">
+        <span class="card__tag">{{ item.tag }}</span>
+        <h2 class="card__title">{{ item.title }}</h2>
+        <p class="card__outcome">{{ item.outcome }}</p>
+        <div class="stats" style="margin-top: 1.5rem;">
+          {% for stat in item.stats %}
+          <div class="stat">
+            <div class="stat__number" style="font-size: 2rem;">{{ stat.number }}</div>
+            <div class="stat__label">{{ stat.label }}</div>
+          </div>
+          {% endfor %}
         </div>
-        {% endfor %}
-      </div>
-      <span class="card__cta">Read the case study &rarr;</span>
-    </a>
+        <span class="card__cta">Read the case study &rarr;</span>
+      </a>
+    </li>
     {% endfor %}
-  </div>
+  </ul>
 </div>

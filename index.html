@@ -14,76 +14,34 @@ image: /assets/og/default.png
     infrastructure into systems teams rely on every day.
   </p>
   <div class="hero__actions">
-    <a class="btn btn--lg" href="/work/">See selected work</a>
+    <a class="text-link" href="/work/">See selected work &rarr;</a>
   </div>
   <p class="hero__meta">Previously: Meta &middot; Deloitte &middot; AI &amp; data startups</p>
 </section>
 
-<section class="section section--alt">
-  <div class="container">
+<section class="section section--line">
+  <div class="container container--mid">
     <span class="eyebrow">Selected work</span>
-    <h2 style="max-width: 24ch;">Two builds, end to end</h2>
-    <div class="card-grid reveal" style="margin-top: 2rem;">
+    <ul class="work-list reveal">
       {% assign work = site.work | sort: "order" %}
       {% for item in work %}
-      <a class="card" href="{{ item.url }}">
-        <span class="card__tag">{{ item.tag }}</span>
-        <h3 class="card__title">{{ item.title }}</h3>
-        <p class="card__outcome">{{ item.outcome }}</p>
-        <span class="card__cta">Read the case study &rarr;</span>
-      </a>
+      <li>
+        <a class="card" href="{{ item.url }}">
+          <span class="card__tag">{{ item.tag }}</span>
+          <h2 class="card__title">{{ item.title }}</h2>
+          <p class="card__outcome">{{ item.outcome }}</p>
+          <span class="card__cta">Read the case study &rarr;</span>
+        </a>
+      </li>
       {% endfor %}
-    </div>
+    </ul>
   </div>
 </section>
 
-<section class="section">
-  <div class="container container--mid">
-    <span class="eyebrow">How I work</span>
-    <h2 style="max-width: 24ch;">The same judgment, whatever the domain</h2>
-    <div class="steps reveal" style="margin-top: 3rem;">
-      <div class="step">
-        <div class="step__number" aria-hidden="true">01</div>
-        <div>
-          <h3 class="step__title">Map the questions before the stack</h3>
-          <p class="step__body">
-            Tools are the last decision, not the first. I start from the
-            decisions people need to make, work backwards to the data those
-            decisions require, and only then pick what to build with.
-          </p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step__number" aria-hidden="true">02</div>
-        <div>
-          <h3 class="step__title">Build on what's already there</h3>
-          <p class="step__body">
-            The best pipelines run alongside existing infrastructure instead of
-            replacing it. Nothing gets ripped out; every new system plugs into
-            the tools and workflows a team already trusts.
-          </p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step__number" aria-hidden="true">03</div>
-        <div>
-          <h3 class="step__title">Ship it so others own it</h3>
-          <p class="step__body">
-            A system isn't done when it runs — it's done when non-technical
-            people use it without me. Documented, monitored, and validated, so
-            it keeps earning trust after I move on.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--alt">
+<section class="section section--line">
   <div class="container container--mid">
     <span class="eyebrow">Writing</span>
-    <h2>Occasional notes on data &amp; product</h2>
-    <ul class="post-list reveal" style="margin-top: 1.5rem;">
+    <ul class="post-list reveal" style="margin-top: 0.5rem;">
       {% for post in site.categories.writing limit: 3 %}
       <li>
         <a class="post-item" href="{{ post.url }}">
@@ -97,7 +55,7 @@ image: /assets/og/default.png
   </div>
 </section>
 
-<section class="section">
+<section class="section section--line">
   <div class="container container--mid">
     <span class="eyebrow">About</span>
     <div class="bio reveal" style="margin-top: 1rem;">
@@ -118,15 +76,16 @@ image: /assets/og/default.png
   </div>
 </section>
 
-<section class="section section--dark">
-  <div class="container container--mid" style="text-align: center;">
-    <h2 style="max-width: 28ch; margin: 0 auto;">Working on a hard data or AI problem?</h2>
-    <p style="margin-top: 1rem; max-width: 48ch; margin-left: auto; margin-right: auto;">
+<section class="section section--line">
+  <div class="container container--mid contact">
+    <span class="eyebrow">Contact</span>
+    <h2 class="contact__title">Working on a hard data or AI problem?</h2>
+    <p class="contact__lead">
       Email is the fastest way to reach me. I'm always glad to compare notes —
       or to meet for a coffee in San Francisco.
     </p>
-    <div style="margin-top: 2rem;">
-      <a class="btn btn--lg" href="mailto:{{ site.email }}">{{ site.email }}</a>
-    </div>
+    <p class="contact__email">
+      <a class="text-link" href="mailto:{{ site.email }}">{{ site.email }}</a>
+    </p>
   </div>
 </section>

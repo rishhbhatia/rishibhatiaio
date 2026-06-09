@@ -77,6 +77,26 @@ sibling of ceroh.ai. Built autonomously by Claude Code, 2026-06-09.
 - Deployed to GitHub Pages; build green; all old and new URLs verified live
   (apex 301 → www as before).
 
+## 2026-06-09 (later) — Diverge from ceroh.ai (requested)
+
+Rishi asked for the site to read as a personal blog/portfolio, more minimal,
+distinct from ceroh.ai while keeping some elements. Changes:
+
+- Removed the "How I work" section from the home page.
+- Accent swapped: ceroh yellow `#f5d04e` → terracotta `#b85c38` everywhere
+  (links, step numerals, selection, OG bar, favicon, touch icon — OG images
+  regenerated).
+- Pill buttons retired: nav CTA became a plain "Contact" link; hero and contact
+  actions are arrow text-links; the one remaining button (404) is a quiet
+  1px-bordered rectangle.
+- Marketing bands retired: no more alternating `#f5f5f5` and dark sections —
+  all-white page with hairline dividers (`.section--line`).
+- Work entries: boxed cards → borderless editorial rows with DM Serif titles.
+- Case-study step numbers: yellow circles → terracotta DM Serif numerals.
+- Kept from ceroh: DM Serif Display + Inter, spacing rhythm and containers,
+  fixed blurred header, footer structure, stats row, at-a-glance table, reveal
+  motion.
+
 ## Open items (for Rishi)
 
 - **LinkedIn URL**: `linkedin.com/in/rishhbhatia` shows "Profile Not Found" to
