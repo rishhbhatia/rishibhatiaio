@@ -97,6 +97,15 @@ distinct from ceroh.ai while keeping some elements. Changes:
   fixed blurred header, footer structure, stats row, at-a-glance table, reveal
   motion.
 
+## 2026-06-09 (later still) — Commercial clarity additions (requested)
+
+- "Work with me" section on the home page (build sprints via Ceroh, fractional
+  data & AI leadership, advisory) and a matching paragraph on About.
+- Booking link wired in (home contact section + About), reusing Ceroh's Google
+  Calendar appointment link, verified live.
+- Person JSON-LD on `/` and `/about/` (name, job title, SF address, worksFor
+  Ceroh, sameAs LinkedIn/GitHub/ceroh.ai) for name-search results.
+
 ## Open items (for Rishi)
 
 - **LinkedIn URL**: `linkedin.com/in/rishhbhatia` shows "Profile Not Found" to
