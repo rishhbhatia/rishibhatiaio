@@ -1,18 +1,37 @@
 ---
 layout: default
 ---
-<article class="container px-2 mx-auto mb4" itemscope itemtype="http://schema.org/BlogPosting">
-  <h1 class="h0 col-9 sm-width-full py-4 mt-3 inline-block" itemprop="name headline">{{ page.title }}</h1>
-  <div class="col-4 sm-width-full mt-1 border-top-thin ">
-    <p class="mb-3 py-2 bold h4"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time></p>
-  </div>
+<article class="container container--prose" itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="page-header">
+    <h1 class="page-header__title" itemprop="name headline">{{ page.title }}</h1>
+    <p class="page-meta" style="margin-top: 1rem;">
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time>
+    </p>
+  </header>
 
   <div class="prose" itemprop="articleBody">
-      {{ content }}
+    {{ content }}
   </div>
 
+  {% assign writing_posts = site.categories.writing %}
+  <nav class="prev-next" aria-label="More writing" style="margin-top: 4rem; padding: 1.5rem 0 6rem; border-top: 1px solid rgba(0,0,0,0.1);">
+    {% assign found = false %}
+    {% for post in writing_posts %}
+      {% if post.url == page.url %}
+        {% assign post_index = forloop.index0 %}
+      {% endif %}
+    {% endfor %}
+    {% assign next_index = post_index | minus: 1 %}
+    {% assign prev_index = post_index | plus: 1 %}
+    <span>
+      {% if writing_posts[prev_index] %}
+        <a href="{{ writing_posts[prev_index].url }}" rel="prev">&larr; {{ writing_posts[prev_index].title }}</a>
+      {% endif %}
+    </span>
+    <span>
+      {% if next_index >= 0 and writing_posts[next_index] %}
+        <a href="{{ writing_posts[next_index].url }}" rel="next">{{ writing_posts[next_index].title }} &rarr;</a>
+      {% endif %}
+    </span>
+  </nav>
 </article>
-
-<div class="container mx-auto px-2 py-2 clearfix">
-  {% include previous-next.html %}
-</div>

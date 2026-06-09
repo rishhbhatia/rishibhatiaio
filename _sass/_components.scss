@@ -1,0 +1,465 @@
+// Components — buttons, hero, stats, steps, cards, prose, post list
+
+// ------------------------------------------------------------- buttons
+.btn {
+  display: inline-block;
+  border-radius: $radius-pill;
+  font-weight: 600;
+  font-size: $text-sm;
+  line-height: 1.4;
+  padding: $space-3 $space-5;
+  background: $color-accent;
+  color: $color-ink;
+  transition: background-color 0.2s ease, transform 0.2s $ease-out-expo;
+
+  &:hover {
+    background: $color-accent-hover;
+  }
+}
+
+.btn--lg {
+  font-size: 1rem;
+  padding: $space-4 2.5rem;
+}
+
+.btn--dark {
+  background: $color-ink;
+  color: #fff;
+
+  &:hover {
+    background: #000;
+  }
+}
+
+.text-link {
+  font-weight: 600;
+  color: $color-ink;
+  border-bottom: 2px solid $color-accent;
+  padding-bottom: 1px;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $color-ink;
+  }
+}
+
+// ------------------------------------------------------------- hero
+.hero {
+  padding-top: $space-8;
+  padding-bottom: $space-8;
+
+  @media (min-width: $bp-md) {
+    padding-top: 7rem;
+    padding-bottom: $space-9;
+  }
+}
+
+.hero__title {
+  max-width: 17ch;
+}
+
+.hero__lead {
+  margin-top: $space-5;
+  font-size: $text-lg;
+  color: $color-muted;
+  max-width: 52ch;
+}
+
+.hero__actions {
+  margin-top: $space-6;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-5;
+}
+
+.hero__meta {
+  margin-top: $space-6;
+  font-size: $text-sm;
+  color: $color-muted;
+}
+
+// ------------------------------------------------------------- stats
+.stats {
+  display: grid;
+  gap: $space-5;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.stat__number {
+  font-family: $font-display;
+  font-size: $text-4xl;
+  line-height: 1.1;
+  letter-spacing: $tracking-display;
+  color: $color-ink;
+
+  .section--dark & {
+    color: $color-accent;
+  }
+}
+
+.stat__label {
+  margin-top: $space-2;
+  font-size: $text-sm;
+  color: $color-muted;
+
+  .section--dark & {
+    color: $color-on-dark-muted;
+  }
+}
+
+// ------------------------------------------------------- numbered steps
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: $space-7;
+  counter-reset: step;
+}
+
+.step {
+  display: flex;
+  gap: $space-5;
+  align-items: flex-start;
+}
+
+.step__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-pill;
+  background: $color-accent;
+  font-size: $text-sm;
+  font-weight: 700;
+  color: $color-ink;
+}
+
+.step__title {
+  font-size: $text-lg;
+}
+
+.step__kicker {
+  display: block;
+  margin-top: $space-1;
+  font-size: $text-sm;
+  color: $color-muted;
+}
+
+.step__body {
+  margin-top: $space-3;
+  color: $color-muted;
+  max-width: 58ch;
+}
+
+// ------------------------------------------------------------- cards
+.card {
+  display: block;
+  background: $color-bg;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-card;
+  padding: $space-6;
+  transition: border-color 0.2s ease, transform 0.3s $ease-out-expo;
+
+  &:hover {
+    border-color: $color-ink;
+  }
+}
+
+.card__tag {
+  font-size: $text-xs;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color-muted;
+}
+
+.card__title {
+  margin-top: $space-3;
+  font-size: $text-xl;
+  line-height: $leading-snug;
+}
+
+.card__outcome {
+  margin-top: $space-3;
+  color: $color-muted;
+}
+
+.card__cta {
+  display: inline-block;
+  margin-top: $space-4;
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $color-ink;
+}
+
+.card-grid {
+  display: grid;
+  gap: $space-5;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// ------------------------------------------------------------- bio
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  align-items: flex-start;
+
+  @media (min-width: $bp-md) {
+    flex-direction: row;
+    gap: $space-7;
+  }
+}
+
+.bio__photo {
+  width: 160px;
+  height: 160px;
+  border-radius: $radius-pill;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.bio__name {
+  font-size: $text-xl;
+}
+
+.bio__previously {
+  margin-top: $space-2;
+  font-size: $text-sm;
+  color: $color-muted;
+}
+
+.bio__body {
+  margin-top: $space-4;
+  color: $color-muted;
+  max-width: 58ch;
+}
+
+// ------------------------------------------------------------- prose
+.prose {
+  > * + * {
+    margin-top: $space-5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-top: $space-7;
+  }
+
+  h1 {
+    font-size: $text-2xl;
+    font-family: $font-sans;
+    font-weight: 700;
+    letter-spacing: normal;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.25rem;
+
+    li + li {
+      margin-top: $space-2;
+    }
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  a {
+    font-weight: 500;
+    color: $color-ink;
+    border-bottom: 2px solid $color-accent;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+      border-color: $color-ink;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid $color-accent;
+    padding-left: $space-5;
+    color: $color-muted;
+    font-style: italic;
+  }
+
+  img {
+    border-radius: $radius-card;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid $color-border-strong;
+  }
+
+  code {
+    font-size: 0.9em;
+    background: $color-bg-alt;
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+  }
+
+  pre {
+    background: $color-bg-alt;
+    padding: $space-5;
+    border-radius: $radius-card;
+    overflow-x: auto;
+
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  strong {
+    color: $color-ink;
+  }
+}
+
+// ----------------------------------------------------------- post list
+.post-list {
+  > li + li {
+    margin-top: $space-5;
+  }
+}
+
+.post-item {
+  display: block;
+  padding: $space-5 0;
+  border-bottom: 1px solid $color-border-strong;
+}
+
+.post-item__title {
+  font-size: $text-xl;
+  font-weight: 700;
+  color: $color-ink;
+  transition: color 0.2s ease;
+
+  .post-item:hover & {
+    text-decoration: underline;
+    text-decoration-color: $color-accent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+}
+
+.post-item__date {
+  display: block;
+  margin-top: $space-2;
+  font-size: $text-sm;
+  color: $color-muted;
+}
+
+// -------------------------------------------------------- page header
+.page-header {
+  padding-top: $space-7;
+  padding-bottom: $space-7;
+
+  @media (min-width: $bp-md) {
+    padding-top: $space-8;
+    padding-bottom: $space-8;
+  }
+}
+
+.page-header__title {
+  font-size: $text-title;
+}
+
+.page-header__lead {
+  margin-top: $space-4;
+  font-size: $text-lg;
+  color: $color-muted;
+  max-width: 52ch;
+}
+
+.page-meta {
+  font-size: $text-sm;
+  color: $color-muted;
+}
+
+// ------------------------------------------------------ case study bits
+.glance {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $text-sm;
+
+  th,
+  td {
+    text-align: left;
+    padding: $space-3 0;
+    border-bottom: 1px solid $color-border-strong;
+    vertical-align: top;
+  }
+
+  th {
+    width: 9rem;
+    font-weight: 600;
+    color: $color-ink;
+    padding-right: $space-5;
+  }
+
+  td {
+    color: $color-muted;
+  }
+}
+
+.prev-next {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-5;
+  font-size: $text-sm;
+  font-weight: 600;
+
+  a {
+    color: $color-muted;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-ink;
+    }
+  }
+}
+
+// ------------------------------------------------------------- reveal
+.reveal {
+  opacity: 0;
+  transform: translateY($reveal-offset);
+  transition:
+    opacity $reveal-duration $ease-out-expo,
+    transform $reveal-duration $ease-out-expo;
+
+  &.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// no-JS or reduced motion: never hide content
+.no-js .reveal,
+.reveal.no-motion {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

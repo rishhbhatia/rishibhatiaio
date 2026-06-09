@@ -1,0 +1,25 @@
+<header class="site-header" id="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">Rishi Bhatia</a>
+
+    <nav class="site-header__nav" aria-label="Main">
+      <a class="site-header__link" href="/work/" {% if page.url contains '/work' %}aria-current="page"{% endif %}>Work</a>
+      <a class="site-header__link" href="/writing/" {% if page.url contains '/writing' or page.categories contains 'writing' %}aria-current="page"{% endif %}>Writing</a>
+      <a class="site-header__link" href="/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a>
+    </nav>
+
+    <div>
+      <a class="btn site-header__cta" href="mailto:{{ site.email }}">Get in touch</a>
+      <button class="site-header__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="site-header__mobile" id="mobile-nav" aria-label="Mobile">
+    <a href="/work/">Work</a>
+    <a href="/writing/">Writing</a>
+    <a href="/about/">About</a>
+    <a href="mailto:{{ site.email }}">Get in touch</a>
+  </nav>
+</header>

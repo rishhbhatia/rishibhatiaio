@@ -1,0 +1,45 @@
+---
+layout: default
+---
+<article class="container container--mid">
+  <header class="page-header">
+    <span class="eyebrow">Case study</span>
+    <h1 class="page-header__title">{{ page.title }}</h1>
+    {% if page.lead %}<p class="page-header__lead">{{ page.lead }}</p>{% endif %}
+  </header>
+
+  {% if page.stats %}
+  <div class="stats reveal" style="margin-bottom: 3rem;">
+    {% for stat in page.stats %}
+    <div class="stat">
+      <div class="stat__number">{{ stat.number }}</div>
+      <div class="stat__label">{{ stat.label }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if page.glance %}
+  <table class="glance reveal" style="margin-bottom: 3rem;">
+    <caption class="eyebrow" style="text-align: left; margin-bottom: 0.75rem;">At a glance</caption>
+    <tbody>
+      {% for row in page.glance %}
+      <tr>
+        <th scope="row">{{ row[0] }}</th>
+        <td>{{ row[1] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {{ content }}
+
+  <nav class="prev-next" aria-label="More work" style="padding: 1.5rem 0 6rem; border-top: 1px solid rgba(0,0,0,0.1);">
+    <span><a href="/work/">&larr; All work</a></span>
+    {% assign others = site.work | where_exp: "item", "item.url != page.url" %}
+    {% if others.first %}
+    <span><a href="{{ others.first.url }}">{{ others.first.short_title | default: others.first.title }} &rarr;</a></span>
+    {% endif %}
+  </nav>
+</article>
