@@ -393,6 +393,11 @@
 }
 
 // ------------------------------------------------------------- contact
+// anchor target needs clearance below the fixed header
+#contact {
+  scroll-margin-top: 65px;
+}
+
 .contact__title {
   max-width: 28ch;
 }
