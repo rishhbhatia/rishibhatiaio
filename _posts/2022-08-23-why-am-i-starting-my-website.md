@@ -3,12 +3,11 @@ layout: category-post
 title:  "Why am I starting my website"
 date:   2022-08-23 15:31:06 -0700
 categories: writing
+image: /assets/og/why-website.png
 ---
-### Let's get started
-\
-As I write this, I am sitting on the deck of an A-frame cabin perched somewhere in Sonora, CA. It's sunny outside, the wind is rustling, and a family of deers is grazing 10 feet away from me. I hadn't heard about Sonora until a week ago, let alone know that this cabin exists. The initial plan was to head to Yosemite, a place I am familiar with, and book a place to stay near the park. I found this A-frame on Airbnb through their [newly launched feature 'I'm flexible']([https://news.airbnb.com/unique-stays-hosts-earn-more-than-300-million-since-start-of-pandemic/). Ordinarily, I see no path to how I could have found this fantastic place - the place that's inspiring me to sit down today and write all this. I'm delighted that this feature and product exist.
+As I write this, I am sitting on the deck of an A-frame cabin perched somewhere in Sonora, CA. It's sunny outside, the wind is rustling, and a family of deers is grazing 10 feet away from me. I hadn't heard about Sonora until a week ago, let alone know that this cabin exists. The initial plan was to head to Yosemite, a place I am familiar with, and book a place to stay near the park. I found this A-frame on Airbnb through their [newly launched feature 'I'm flexible'](https://news.airbnb.com/unique-stays-hosts-earn-more-than-300-million-since-start-of-pandemic/). Ordinarily, I see no path to how I could have found this fantastic place - the place that's inspiring me to sit down today and write all this. I'm delighted that this feature and product exist.
 
-[add image]
+![](https://openai-labs-public-images-prod.azureedge.net/user-wyrVlJsP8g7Gq5MHGB84uB1I/generations/generation-9whznA4xUom690Kqh7GnO2zf/image.webp)
 
 Ok, Airbnb isn't sponsoring this post. So how is this connected with me starting my website? I turned 30 this year. A year ago, I joined a big tech company as a Data Engineer, helping build AR products. I live in San Francisco, CA. I am surrounded by tech, innovation, ideas, and, most importantly, fun and intelligent people. A lot of these ideas and innovations directly connect with my daily life. I read a lot of what these people have to say. But, I want to add something of *my own* to this mix. I can't live in this time and place and not create.
 

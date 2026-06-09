@@ -1,0 +1,166 @@
+---
+title: From zero to live-ops analytics in 90 days
+short_title: Live-ops analytics
+order: 2
+tag: Data platform · Gaming
+lead: >-
+  A cloud data stack for a venture-backed Roblox studio — its first analytics
+  foundation across five branded game IPs.
+outcome: >-
+  A 0→1 cloud data platform processing 2M+ events a day and serving 70+
+  live-ops metrics across five game IPs.
+description: >-
+  Case study: standing up a Roblox studio's first analytics platform in ~90
+  days — 2M+ events ingested daily, 70+ live-ops metrics across five game IPs,
+  built on Google Cloud.
+image: /assets/og/roblox-live-ops-analytics.png
+stats:
+  - number: 2M+
+    label: game events ingested & processed per day
+  - number: 70+
+    label: live-ops metrics served across 5 game IPs
+  - number: 0 → 1
+    label: analytics platform stood up in ~90 days
+glance:
+  Client: A venture-backed (seed-stage) Roblox studio of ~30, building branded worlds and games for global consumer brands. Anonymized at the client's request; later acquired by a publicly traded media company.
+  My role: Head of Data & Analytics, reporting to the CEO and Head of Product.
+  Engagement: Full-time, ~3-month build (design → build → adoption).
+  Core stack: Google Cloud — BigQuery, Pub/Sub, Dataflow, Cloud Run / Functions, Cloud Storage, Dataform, Looker, Cloud IAM; on top of Roblox (Luau) and Google Workspace SSO.
+---
+
+<div class="prose reveal">
+  <h2>Context</h2>
+  <p>
+    The studio builds custom branded worlds and games on Roblox for the
+    marketing teams of global consumer brands across fashion, beauty, music,
+    and entertainment IP. With five new game IPs launching in a single year,
+    its creative output had outpaced its ability to measure what players
+    actually did inside those worlds.
+  </p>
+
+  <h2>The challenge</h2>
+  <p>
+    When I joined, the only window into the games was Roblox's native creator
+    dashboard: top-line KPIs, no usable history, nothing granular enough for
+    real product analytics. Teams couldn't follow a cohort through
+    onboarding, see where players dropped off, or tell whether a live-ops
+    change had moved a metric. Producers had no confident read on what was
+    working inside a live experience. No analyst could query game data, build
+    a chart, or investigate an issue. And there was no data-backed narrative
+    for the brand clients and the board funding these worlds, which also left
+    an untapped chance to package analytics as a service line.
+  </p>
+  <p>
+    The hard part wasn't buying a tool. There was no data platform at all and
+    no in-house data engineering to build one. Roblox doesn't hand you clean
+    event streams; granular telemetry has to be instrumented in-game and
+    shipped out with schemas built to scale. And it had to work across five
+    games launching that year, on a short runway, for a team with no SQL
+    background.
+  </p>
+</div>
+
+<section style="margin-top: 3rem;">
+  <h2 style="margin-bottom: 2rem;">The approach</h2>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step__number" aria-hidden="true">01</div>
+      <div>
+        <h3 class="step__title">Map the data and the questions first</h3>
+        <p class="step__body">
+          I started from the games and their users rather than the tooling,
+          working through what Roblox could capture and defining each game's
+          questions with producers and the analyst. The key insight: most
+          needs were common across all five games — sessions, retention,
+          funnels, economy, engagement — with a smaller custom set on top.
+          That split shaped the architecture.
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__number" aria-hidden="true">02</div>
+      <div>
+        <h3 class="step__title">Architect for five games, not one</h3>
+        <p class="step__body">
+          After a vendor evaluation I onboarded Google Cloud and built around
+          a shared, schema-driven pipeline: capture a common event model in
+          real time, serve the metrics every game needs, and leave room to
+          federate per-game metrics later. Every decision favored reuse, so
+          each launch would plug in rather than start fresh.
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__number" aria-hidden="true">03</div>
+      <div>
+        <h3 class="step__title">Ship an end-to-end MVP</h3>
+        <p class="step__body">
+          I built the full pipeline end to end for one live game first —
+          instrumentation through to a live-ops dashboard — then templatized
+          it across the rest.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="prose reveal" style="margin-top: 3rem;">
+  <h2>What I built</h2>
+  <p>
+    A complete production data stack on Google Cloud, fitted onto the
+    studio's existing Roblox and Google environment:
+  </p>
+  <ul>
+    <li>
+      Structured telemetry from the Roblox game servers (Luau), shipped to a
+      cloud endpoint (Cloud Run / Functions) and buffered through Pub/Sub for
+      real-time capture.
+    </li>
+    <li>
+      Dataflow pipelines transform events into BigQuery, with raw events
+      landed in Cloud Storage as a replayable source of truth.
+    </li>
+    <li>
+      A schema-driven event model and SQL transformations (Dataform)
+      producing a shared library of live-ops metrics, plus hooks for per-game
+      custom metrics.
+    </li>
+    <li>
+      Looker dashboards for a no-code producer view, and a modeled warehouse
+      the analyst could query with plain SQL.
+    </li>
+    <li>
+      Access via Cloud IAM on the existing Workspace SSO, with backups and
+      pipeline re-runs/backfills, so a bad day never meant lost data.
+    </li>
+  </ul>
+  <p>
+    Because it sat on top of what the studio already had, there was nothing
+    to rip out and replace.
+  </p>
+
+  <h2>Results &amp; impact</h2>
+  <p>
+    Inside the build window the studio went from no analytics to a live
+    platform processing 2M+ events a day and serving 70+ live-ops metrics
+    across five game IPs — its first live-ops analytics ever. The payoff
+    showed up fast. When a game's leaderboard broke and players lost their
+    rankings, the team used the data to diagnose and restore them, the exact
+    response the platform was built for. The team also used onboarding-funnel
+    data to find drop-off points and improve the funnel. Producers got their
+    metrics on a dashboard, the analyst got a reliable system to query, and
+    the Head of Product could turn it into data-backed stories for clients
+    and the board.
+  </p>
+  <p>
+    I led this end to end: design, build, and adoption. The studio was later
+    acquired by a publicly traded media company.
+  </p>
+
+  <h2>Why it matters</h2>
+  <p>
+    The platform was for games, but the capability is industry-agnostic:
+    install a governed, reliable data foundation where none exists — the
+    precondition for putting AI to work on top of a business.
+  </p>
+</div>

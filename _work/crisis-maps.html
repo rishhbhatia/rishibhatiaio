@@ -1,0 +1,172 @@
+---
+title: From research model to crisis maps at planetary scale
+short_title: Crisis maps
+order: 1
+tag: Data engineering · Disaster response
+lead: >-
+  Turning a research model into a production data pipeline that maps how
+  people move during a crisis — for the relief teams responding on the ground.
+outcome: >-
+  30 crisis maps shipped and 80K+ downloads by relief NGOs, from a pipeline
+  processing planetary-scale telemetry daily.
+description: >-
+  Case study: turning a research model into a privacy-safe production pipeline
+  that mapped population movement during crises — 30 maps shipped, 80K+
+  downloads by NGOs and disaster-relief teams.
+image: /assets/og/crisis-maps.png
+stats:
+  - number: "30"
+    label: crisis maps shipped — one per crisis event
+  - number: 80K+
+    label: downloads by NGOs & disaster-relief teams
+  - number: Daily
+    label: planetary-scale movement data processed & aggregated
+glance:
+  Client: A major social-media company's "data-for-good" team, building map-based products that NGOs and disaster-relief organizations use in the field. Anonymized at the client's request.
+  My role: Lead Data Engineer on the research-to-product effort.
+  Engagement: Project-based, ~4 months.
+  Core stack: Airflow, Hive, Spark, Presto; spatial tiling (quadkeys) over a map product built on OpenStreetMap.
+---
+
+<div class="prose reveal">
+  <h2>Context</h2>
+  <p>
+    The team builds map-based products that NGOs and disaster-relief
+    organizations rely on to respond to crises around the world. It was
+    sitting on an enormous, untapped stream of telemetry: how mobile devices
+    connect to cell towers globally, and how those connections shift and
+    drop. Turned into population-movement signals, that data could reveal
+    something hard to see any other way — how people actually move during a
+    crisis.
+  </p>
+
+  <h2>The challenge</h2>
+  <p>
+    The data existed; the insight didn't. The team held a vast volume of raw
+    connectivity telemetry and a promising research model for turning it into
+    movement signals, but nothing that operationalized that research into
+    something a relief worker could open and act on. Planetary-scale telemetry
+    sat unanalyzed, with no pipeline to convert it into daily, map-ready
+    movement metrics. A statistical model existed on the research side; it had
+    never been built into a reliable, scalable production pipeline. And the
+    people who would act on the output worked in disaster relief: they needed
+    a map of where people were moving, not a notebook.
+  </p>
+  <p>
+    None of this was a quick fix. Extracting trustworthy signal from location
+    telemetry at planetary scale is hard on its own. Doing it as a
+    privacy-safe, production-grade pipeline that runs on a schedule and feeds
+    a live product, translated faithfully from a researcher's model, is harder
+    still. And the team's strength was research, not scaling distributed data
+    systems.
+  </p>
+</div>
+
+<section style="margin-top: 3rem;">
+  <h2 style="margin-bottom: 2rem;">The approach</h2>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step__number" aria-hidden="true">01</div>
+      <div>
+        <h3 class="step__title">Understand the data and the research</h3>
+        <p class="step__body">
+          I sampled the telemetry to grasp its shape at scale, then worked
+          through the researchers' statistical model and back-tested it
+          against past crises, confirming the movement signals it produced
+          matched what actually happened on the ground.
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__number" aria-hidden="true">02</div>
+      <div>
+        <h3 class="step__title">Engineer the model into a pipeline</h3>
+        <p class="step__body">
+          I turned the validated model into net-new ETL: spatial aggregation
+          over a standard map-tiling scheme (quadkeys) on top of
+          OpenStreetMap, with the heavy computation designed to stay efficient
+          rather than crunch for half a day. I tested Presto against Spark and
+          moved key steps to Presto to cut the wall-clock time for data to
+          land.
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__number" aria-hidden="true">03</div>
+      <div>
+        <h3 class="step__title">Validate, then wire it to the product</h3>
+        <p class="step__body">
+          I validated the z-scores the pipeline generated against independent
+          crisis data drawn from other sources, confirming the approach held.
+          Then I added data-quality and monitoring alerts and partnered with
+          front-end engineers to hook the daily output into the user-facing
+          maps.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="prose reveal" style="margin-top: 3rem;">
+  <h2>What I built</h2>
+  <p>
+    A privacy-safe production data pipeline that runs alongside the team's
+    existing infrastructure and feeds a live, map-based product:
+  </p>
+  <ul>
+    <li>
+      Connectivity telemetry aggregated into daily movement signals using
+      spatial tiling (quadkeys) over an OSM-based map, tuned so
+      planetary-scale jobs ran efficiently.
+    </li>
+    <li>
+      Presto adopted over Spark for the steps that mattered, cutting the
+      wall-clock time for data to land.
+    </li>
+    <li>
+      Movement anomalies expressed as z-scores against a baseline and
+      validated against independent crisis data, so the signal was real
+      rather than noise.
+    </li>
+    <li>
+      Data masked, stripped of PII, and aggregated to the tile level, so
+      individuals were never identifiable in the output.
+    </li>
+    <li>
+      Net-new ETL orchestrated in Airflow with data-quality and monitoring
+      alerts, triggered alongside the existing DAGs and wired into the
+      front-end maps with the product engineers.
+    </li>
+  </ul>
+  <p>
+    Rather than replace anything, the pipeline ran in parallel to the main
+    infrastructure, reusing common workflow steps in the DAG and triggering
+    on the same schedule as the existing jobs.
+  </p>
+
+  <h2>Results &amp; impact</h2>
+  <p>
+    The work shipped a novel research idea as a production data product: 30
+    new crisis maps for 30 crisis events, each turning raw telemetry into a
+    map relief teams could act on, and 80K+ downloads of those maps by NGOs
+    and disaster-relief organizations. It gave responders visibility on the
+    ground where there had been none, especially across parts of Africa,
+    where movement during a crisis is otherwise very hard to track. Teams
+    could see where people were actually going and allocate resources
+    accordingly.
+  </p>
+  <p>
+    I led the data engineering end to end: sampling raw telemetry, building
+    the model into ETL, and delivering a validated, monitored pipeline that
+    fed a live product used by non-technical responders.
+  </p>
+
+  <h2>Why it matters</h2>
+  <p>
+    The domain was crisis response, but the capability is industry-agnostic:
+    take a promising model and engineer it into a reliable, privacy-safe data
+    product that plugs into existing infrastructure and lands in the hands of
+    non-technical people. That is what turning AI from a research demo into a
+    dependable business workflow requires.
+  </p>
+</div>

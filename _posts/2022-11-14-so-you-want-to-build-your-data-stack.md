@@ -3,6 +3,7 @@ layout: category-post
 title:  "So, you want to build your data stack?"
 date:   2022-11-14 10:30:06 -0700
 categories: writing
+image: /assets/og/data-stack.png
 ---
 
 You are a Founder of a bright and shiny business, or a Product Manager looking to make an immediate impact in a new team.
