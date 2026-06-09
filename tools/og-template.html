@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: "Inter";
+    font-weight: 100 900;
+    src: url("../assets/fonts/inter-var-latin.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "DM Serif Display";
+    font-weight: 400;
+    src: url("../assets/fonts/dm-serif-display-latin.woff2") format("woff2");
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #fff;
+    font-family: "Inter", sans-serif;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 72px 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .eyebrow {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+  }
+  h1 {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-size: 84px;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    max-width: 18ch;
+    margin-top: 28px;
+  }
+  h1.small { font-size: 68px; }
+  .meta {
+    padding-bottom: 56px;
+    font-size: 24px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .meta .site { font-weight: 600; color: #1a1a1a; }
+  .bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 14px;
+    background: #f5d04e;
+  }
+</style>
+</head>
+<body>
+  <div>
+    <div class="eyebrow" id="eyebrow">Data &amp; AI strategist and engineer</div>
+    <h1 id="title">Data &amp; AI systems that make it to production.</h1>
+  </div>
+  <div class="meta">
+    <span class="site">rishibhatia.io</span>
+    <span id="meta-right">Previously: Meta &middot; Deloitte &middot; AI &amp; data startups</span>
+  </div>
+  <div class="bar"></div>
+  <script>
+    const p = new URLSearchParams(location.search);
+    if (p.get('eyebrow') !== null) document.getElementById('eyebrow').textContent = p.get('eyebrow');
+    if (p.get('title')) {
+      const h = document.getElementById('title');
+      h.textContent = p.get('title');
+      if (p.get('title').length > 42) h.classList.add('small');
+    }
+    if (p.get('meta') !== null) document.getElementById('meta-right').textContent = p.get('meta');
+  </script>
+</body>
+</html>
