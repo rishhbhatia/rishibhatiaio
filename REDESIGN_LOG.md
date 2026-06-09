@@ -68,6 +68,22 @@ sibling of ceroh.ai. Built autonomously by Claude Code, 2026-06-09.
   preserves URLs/hosting for free.
 - `tools/` is excluded from the build; it holds the OG/icon generators.
 
-## Open items
+## Phase 7–8 — QA & deploy (2026-06-09)
 
-- (none blocking — see final summary)
+- Two QA iterations: fixed a CSS cascade bug that showed the header CTA on
+  mobile; optimized the headshot (610KB PNG → 29KB JPEG); verified zero console
+  errors on all 9 pages, no broken internal links, focus states, reveal motion,
+  and mobile/desktop layouts.
+- Deployed to GitHub Pages; build green; all old and new URLs verified live
+  (apex 301 → www as before).
+
+## Open items (for Rishi)
+
+- **LinkedIn URL**: `linkedin.com/in/rishhbhatia` shows "Profile Not Found" to
+  logged-out visitors. ceroh.ai links to the same handle, so it was kept — but
+  verify the vanity URL is still correct and update footer/about if not.
+- **Analytics**: none installed (needs approval). Suggestion: GoatCounter or
+  Plausible — privacy-respecting, no cookie banner needed.
+- The github-pages gem injects the Primer theme's unused `style.css` into the
+  output. It is never linked or loaded; harmless, and unavoidable short of
+  moving to a GitHub Actions build.
