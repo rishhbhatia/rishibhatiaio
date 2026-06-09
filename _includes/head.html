@@ -10,4 +10,9 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   <script>document.documentElement.classList.remove('no-js');</script>
   <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+  {% if jekyll.environment == "production" %}
+  <!-- GoatCounter: privacy-friendly analytics, no cookies. Register the
+       "rishibhatia" code at goatcounter.com to activate the dashboard. -->
+  <script data-goatcounter="https://rishibhatia.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  {% endif %}
 </head>

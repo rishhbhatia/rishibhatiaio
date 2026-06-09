@@ -7,6 +7,7 @@ description: >-
 email: rishi@rishibhatia.io
 domain: rishibhatia.io
 url: "https://www.rishibhatia.io"
+baseurl: ""
 author:
   name: Rishi Bhatia
   twitter: rishhbhatia
@@ -30,6 +31,7 @@ social:
 image: /assets/og/default.png
 
 # Build settings
+repository: rishhbhatia/rishibhatiaio
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

@@ -82,8 +82,10 @@ sibling of ceroh.ai. Built autonomously by Claude Code, 2026-06-09.
 - **LinkedIn URL**: `linkedin.com/in/rishhbhatia` shows "Profile Not Found" to
   logged-out visitors. ceroh.ai links to the same handle, so it was kept — but
   verify the vanity URL is still correct and update footer/about if not.
-- **Analytics**: none installed (needs approval). Suggestion: GoatCounter or
-  Plausible — privacy-respecting, no cookie banner needed.
+- **Analytics**: GoatCounter added (approved 2026-06-09). Production-only
+  (`jekyll.environment` guard, so local previews don't count). To activate:
+  sign up at goatcounter.com and claim the site code `rishibhatia`. No
+  cookies, so no consent banner required.
 - The github-pages gem injects the Primer theme's unused `style.css` into the
   output. It is never linked or loaded; harmless, and unavoidable short of
   moving to a GitHub Actions build.
