@@ -35,13 +35,6 @@ When my laptop is closed, I'm strength training, swimming, or snowboarding —
 and my favorite: 1:1 conversations with fascinating people in cafés all over
 San Francisco. If you're one of them, say hi.
 
-**Work with me.** I take on a small number of engagements alongside running
-Ceroh: scoped 30-day build sprints (data platforms, pipelines, AI workflows —
-inside your own infrastructure), fractional data & AI leadership for teams not
-ready to hire a full-time head of data, and advisory. If that sounds like your
-problem, [email me](mailto:rishi@rishibhatia.io) or
-[book an intro call](https://calendar.app.google/8hJY2Pq1r5CfM44XA).
-
 The fastest way to reach me is email:
 [rishi@rishibhatia.io](mailto:rishi@rishibhatia.io). I'm also on
 [LinkedIn](https://www.linkedin.com/in/rishhbhatia) and
