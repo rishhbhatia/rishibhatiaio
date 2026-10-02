@@ -1,0 +1,206 @@
+---
+title: An AI lead-gen engine, from LinkedIn network to inbox
+short_title: AI lead gen
+order: 1
+tag: AI automation · Lead generation
+lead: >-
+  A Claude-powered pipeline that finds, scores, enriches, and contacts
+  prospects for Ceroh, my AI and data consultancy. One part of it now sells
+  as a standalone product.
+outcome: >-
+  An end-to-end outbound system run on Claude models and APIs: 12K+ profiles
+  scraped, 1.2K+ personalized first touches sent, 200+ people engaged, and a
+  spin-off shipped as a paid product.
+description: >-
+  Case study: building an AI lead-generation and outreach engine with Claude
+  for an AI consultancy. Network mining, LLM lead scoring, decision-maker
+  enrichment, verified cold email, and a spin-off product sold on Gumroad.
+image: /assets/og/ai-lead-gen-engine.png
+stats:
+  - number: 12K+
+    label: LinkedIn profiles scraped into a searchable lead database
+  - number: 1.2K+
+    label: personalized first touches sent on autopilot
+  - number: 200+
+    label: people engaged from automated outreach
+glance:
+  Client: Ceroh, my AI and data consultancy. Internal tooling for its own outbound pipeline, aimed at marketing and media agencies.
+  My role: Founder. I designed and built every component, pairing with Claude Code throughout.
+  Engagement: Built in increments, Feb–Aug 2026. Runs daily on a schedule.
+  Core stack: Claude (Opus, Sonnet, Haiku) via the Claude Code CLI in headless mode, plus subagents; Python and Playwright; Node.js; SQLite; Notion API; Apify; Hunter.io; Gmail SMTP; Vercel; launchd; Flask.
+---
+
+<div class="prose reveal">
+  <h2>Context</h2>
+  <p>
+    Ceroh builds data and AI systems for small teams, mostly marketing and
+    media agencies. Like any services firm it lives or dies on pipeline, and
+    early on that pipeline was me: searching LinkedIn, reading profiles,
+    deciding who was worth a message, writing that message, and remembering
+    to follow up. A few dozen good conversations a month took most of a
+    week.
+  </p>
+
+  <h2>The challenge</h2>
+  <p>
+    Lead generation splits into two kinds of work. One kind is judgment: is
+    this person a fit, which company should come first, what do I say to
+    them. The other kind is plumbing: collecting profiles, removing
+    duplicates, finding and checking email addresses, sending on a schedule,
+    and logging who got what. I had to do both by hand, so neither got done
+    well.
+  </p>
+  <p>
+    Buying a sales-automation tool didn't solve it. Off-the-shelf tools
+    automate the plumbing and leave the judgment to keyword filters, which
+    is how you end up with generic messages and burned accounts. I wanted
+    the reverse: let a language model make the calls I was making, inside a
+    system that keeps sending volume safe for the LinkedIn account and the
+    email domain. All of it had to run on a one-person budget.
+  </p>
+</div>
+
+<section style="margin-top: 3rem;">
+  <h2 style="margin-bottom: 2rem;">The approach</h2>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step__number" aria-hidden="true">01</div>
+      <div>
+        <h3 class="step__title">Give the model the judgment, keep the plumbing in code</h3>
+        <p class="step__body">
+          The model gets the decisions a person would make: scoring a
+          profile against a rubric, ranking which companies to pursue, and
+          writing the message. Ordinary scripts handle record identity,
+          de-duplication, and every database write. Claude can be wrong
+          about who is a good lead, but it can never create a duplicate
+          record or corrupt one. To change the targeting I edit a prompt,
+          not code.
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__number" aria-hidden="true">02</div>
+      <div>
+        <h3 class="step__title">Pick the model by task, and cap the cost</h3>
+        <p class="step__body">
+          Opus does the few decisions that need careful reasoning, like the
+          daily ranking. Haiku does the high-volume work: each company gets
+          its own small, cheap worker that researches it, writes the result
+          to the database, and reports back in one line. Because each worker
+          keeps its own search results, the main session stays small no
+          matter how many companies run. Scheduled runs use my Claude
+          subscription rather than per-call API billing, so a runaway job
+          can't produce a surprise bill.
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__number" aria-hidden="true">03</div>
+      <div>
+        <h3 class="step__title">Measure before sending at volume</h3>
+        <p class="step__body">
+          I tested deliverability and platform limits before turning
+          anything up. That meant seed tests across real inboxes,
+          conservative daily caps, randomized timing, and a do-not-contact
+          list the sending code can't skip. In outbound, getting flagged as
+          spam costs more than sending slowly.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="prose reveal" style="margin-top: 3rem;">
+  <h2>What I built</h2>
+  <p>
+    Two connected systems: a LinkedIn engine for warm and cold outreach,
+    and a pipeline for finding, enriching, and emailing prospect companies.
+  </p>
+  <ul>
+    <li>
+      <strong>Network mining with Claude scoring.</strong> A Playwright
+      scraper turned LinkedIn into a local lead database of 12,000+
+      profiles. Each profile goes to Claude in headless mode with
+      a scoring rubric and comes back as structured JSON: a 1–10 relevance
+      score, the reasoning behind it, talking points, and a personalized
+      reconnection note under LinkedIn's character limit. A
+      fault-tolerant parser checks every response before it reaches the
+      database.
+    </li>
+    <li>
+      <strong>A connection engine that runs itself.</strong> It imports a
+      CSV of leads, fills a message template per person, and sends requests
+      from a real Chrome window with human-paced typing, 90–180 second gaps,
+      and hard caps of 20 a day and 100 a week. It saves the login session,
+      runs daily on a schedule, recovers cleanly when a session expires, and
+      reports through a Flask dashboard.
+    </li>
+    <li>
+      <strong>Buying-signal discovery.</strong> A company that's hiring
+      data people has data problems. A feed checks three job sources every
+      four hours through GitHub Actions, normalizes and de-duplicates the
+      postings into Notion, and Opus picks each day's shortlist using
+      criteria written as a prompt.
+    </li>
+    <li>
+      <strong>Decision-maker enrichment.</strong> For each target company,
+      a Haiku worker finds the head of data with web search, and a second
+      pass uses Apify's LinkedIn search to find senior practitioners. Each
+      worker writes straight to Notion, and paid lookups run once per
+      company at about $0.10 each. The workers are told to return
+      "unknown" rather than guess a contact.
+    </li>
+    <li>
+      <strong>Verified email, sent safely.</strong> Hunter.io's free tier
+      caps every search at 10 results. Running a separate search per
+      department, then merging the results, returned 25–40 contacts per
+      firm instead of 10. Addresses are verified before anything is queued.
+      A Gmail sender with a 25-a-day cap writes to the send log before it
+      updates Notion, and an open-tracking pixel on Vercel uses signed
+      tokens, so each open updates the right row without a lookup.
+    </li>
+    <li>
+      <strong>Unattended runs.</strong> launchd starts the morning run.
+      When the Claude plan hits its usage limit, the system reads the reset
+      time from the error, waits for the window to reopen, and continues.
+      A pause file stops it.
+    </li>
+  </ul>
+  <p>
+    I then turned the LinkedIn engine into a product. I added a
+    one-command setup, a first-run wizard, a config file, plain-English
+    error messages, a license, and a release packager that strips session
+    data from the download. It sells on Gumroad as
+    <a href="https://rishh2.gumroad.com/l/firstdegree">FirstDegree</a>.
+  </p>
+
+  <h2>Results &amp; impact</h2>
+  <p>
+    Outbound went from a weekly manual chore to a system that runs before
+    I start work. The engine scraped 12,000+ profiles into a database I can
+    search and score on demand, sent 1,200+ personalized first touches with
+    no manual sends, and engaged 200+ people. The enrichment pipeline
+    delivers each target company with its decision maker already found.
+  </p>
+  <p>
+    The deliverability testing changed the setup. Seed tests across real
+    inboxes showed that passing email authentication isn't enough: a domain
+    with no sending history can still land in spam. Acting on that before
+    scaling up kept messages in the inbox. Without the test, the problem
+    would never have shown up on the dashboards.
+  </p>
+  <p>
+    The LinkedIn engine became FirstDegree, a packaged product that other
+    people can install and run, shipped as a paid product on Gumroad.
+  </p>
+
+  <h2>Why it matters</h2>
+  <p>
+    This was built for my own pipeline, but the pattern applies to any team
+    with a manual, judgment-heavy workflow. The model makes the calls a
+    person would make. Ordinary code handles anything that has to be exactly
+    right. Costs are capped, limits are enforced in code, and a person
+    approves anything that's expensive to undo. That's how I build AI and
+    data automation for clients.
+  </p>
+</div>
